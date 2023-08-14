@@ -7,10 +7,7 @@ canvas.height = innerHeight
 
 class Player {
     constructor() {
-        this.position = {
-            x: 200,
-            y: 200
-        }
+
         this.velacity = {
             x: 0,
             y: 0
@@ -18,14 +15,21 @@ class Player {
 
         const image = new  Image()
         image.src = 'assets/img/spaceship.png'
+        image.onload = () => {
+            const scale = 0.15
+            this.image = image
+            this.width = image.width * scale
+            this.height = image.height * scale
 
-        this.image = image
-        this.width = 100
-        this.height = 100
-
+            this.position = {
+                x: canvas.width / 2 - this.width / 2,
+                y: canvas.height - this.height - 20
+            }
+        }
     }
     draw (){
         //
+        if (this.image)
         c.drawImage(this.image, this.position.x, this.position.y, this.width, this.height )
     }
 }
